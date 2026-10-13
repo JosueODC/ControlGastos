@@ -1,0 +1,123 @@
+@model ControlGastos.Models.Movimiento
+@{
+    ViewData["Title"] = "Editar movimiento";
+}
+
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-7 col-xl-6">
+
+            <a asp-controller="Home" asp-action="Index"
+               class="d-inline-block mb-3 small text-decoration-none">
+                ← Volver a movimientos
+            </a>
+
+            <div class="card box-shadow border-0">
+                <div class="card-body p-4 p-md-5">
+
+                    <header class="mb-4">
+                        <h2 class="fw-bold mb-1">Editar movimiento</h2>
+                        <p class="text-muted mb-0">
+                            Actualiza los datos y guarda los cambios.
+                        </p>
+                    </header>
+
+                    <form asp-controller="Home" asp-action="Editar"
+                          asp-route-id="@Model.Id" method="post" novalidate>
+
+                        <div asp-validation-summary="ModelOnly"
+                             class="alert alert-danger py-2 small"></div>
+
+                        <input type="hidden" asp-for="Id" />
+
+                        <!-- Tipo -->
+                        <div class="mb-4">
+                            <label class="form-label fw-medium d-block">
+                                Tipo de movimiento
+                            </label>
+                            <div class="btn-group w-100 tipo-toggle" role="group">
+                                <input asp-for="Tipo" type="radio" value="Ingreso"
+                                       id="tipo-ingreso" class="btn-check" />
+                                <label class="btn btn-outline-success"
+                                       for="tipo-ingreso">Ingreso</label>
+
+                                <input asp-for="Tipo" type="radio" value="Gasto"
+                                       id="tipo-gasto" class="btn-check" />
+                                <label class="btn btn-outline-danger"
+                                       for="tipo-gasto">Gasto</label>
+                            </div>
+                            <span asp-validation-for="Tipo"
+                                  class="text-danger small"></span>
+                        </div>
+
+                        <!-- Descripción -->
+                        <div class="mb-3">
+                            <label asp-for="Descripcion"
+                                   class="form-label fw-medium">Descripción</label>
+                            <input asp-for="Descripcion" class="form-control"
+                                   placeholder="Ej. Comida con amigos" required />
+                            <span asp-validation-for="Descripcion"
+                                  class="text-danger small"></span>
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <!-- Cantidad -->
+                            <div class="col-md-6">
+                                <label asp-for="Cantidad"
+                                       class="form-label fw-medium">Cantidad</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">$</span>
+                                    <input asp-for="Cantidad" type="number"
+                                           class="form-control" min="0.01"
+                                           step="0.01" placeholder="0.00" required />
+                                </div>
+                                <span asp-validation-for="Cantidad"
+                                      class="text-danger small"></span>
+                            </div>
+
+                            <!-- Fecha -->
+                            <div class="col-md-6">
+                                <label asp-for="Fecha"
+                                       class="form-label fw-medium">Fecha</label>
+                                <input asp-for="Fecha" type="date"
+                                       asp-format="{0:yyyy-MM-dd}"
+                                       class="form-control" required />
+                                <span asp-validation-for="Fecha"
+                                      class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <!-- Categoría -->
+                        <div class="mb-4">
+                            <label asp-for="Categoria"
+                                   class="form-label fw-medium">Categoría</label>
+                            <select asp-for="Categoria" class="form-select" required>
+                                <option value="Alimentación">Alimentación</option>
+                                <option value="Transporte">Transporte</option>
+                                <option value="Escuela">Escuela</option>
+                                <option value="Salud">Salud</option>
+                                <option value="Otros">Otros</option>
+                            </select>
+                            <span asp-validation-for="Categoria"
+                                  class="text-danger small"></span>
+                        </div>
+
+                        <!-- Acciones -->
+                        <div class="d-flex flex-column flex-sm-row gap-2
+                                    justify-content-end pt-3 border-top">
+                            <a asp-controller="Home" asp-action="Index"
+                               class="btn btn-outline-secondary">Cancelar</a>
+                            <button type="submit" class="btn btn-primary px-4">
+                                Guardar cambios
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
