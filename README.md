@@ -7,7 +7,9 @@ Funciones
 -Clasificar movimientos por categoría.
 -Consultar los movimientos registrados.
 -Calcular automáticamente los ingresos, gastos y saldo.
-
+##Captura de Ejecucion del Programa
+##Panel 
+![Panel principal de ControlGastos](capturas/dashboard.png)
 Tecnologías utilizadas
 C# y ASP.NET Core MVC
 SQL Server
